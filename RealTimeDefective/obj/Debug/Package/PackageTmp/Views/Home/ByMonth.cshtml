@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "By Month";
+}
+<style>
+    .ui-datepicker-calendar {
+    display: none;
+ }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validate({
+            form: '#form_search',
+            onSuccess: function ($form) {
+                var obj = new Object();
+                obj.dtFrom = $("#dtFrom").val();
+                obj.dtTo = $("#dtTo").val();
+                obj.fg = $("#selFg").val();
+                $.get("@Url.Action("_GetGraphByMonth", "Home")", obj, function (data) {
+                    $("#displayGraph").html(data);
+                });
+                return false; // Will stop the submission of the form
+            }
+        });
+
+        $(".date-picker").datepicker({
+            dateFormat: 'yy/mm',
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1,
+            maxDate: "0",
+            showButtonPanel: true,
+            onClose: function(dateText, inst) {
+                function isDonePressed(){
+                    return ($('#ui-datepicker-div').html()
+                        .indexOf('ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover') > -1);
+                }
+
+                if (isDonePressed()){
+                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                    $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');     
+                    $('.date-picker').focusout()//Added to remove focus from datepicker input box on selecting date
+                }
+            }
+            //beforeShow : function(input, inst) {
+            //    inst.dpDiv.addClass('month_year_datepicker')
+            //    if ((datestr = $(this).val()).length > 0) {
+            //        year = datestr.substring(datestr.length-4, datestr.length);
+            //        month = datestr.substring(0, 2);
+            //        $(this).datepicker('option', 'defaultDate', new Date(year, month-1, 1));
+            //        $(this).datepicker('setDate', new Date(year, month-1, 1));
+            //        $(".ui-datepicker-calendar").hide();
+            //    }
+            //}
+        });
+        //$("#dtTo").datepicker({
+        //    dateFormat: 'mmyy',
+        //    changeMonth: true,
+        //    changeYear: true,
+        //    numberOfMonths: 1,
+        //    maxDate: "0",
+        //    showButtonPanel: true,
+        //    onClose: function (selectedDate) {
+        //        //$("#dtFrom").datepicker("option", "maxDate", selectedDate);
+        //    }
+        //});
+
+        @*$('#btSearch').click(function (e) {
+            e.preventDefault();
+            var obj = new Object();
+            obj.dtFrom = $("#dtFrom").val();
+            obj.dtTo = $("#dtTo").val();
+            obj.fg = $("#selFg").val();
+            $.get("@Url.Action("_GetGraphByMonth", "Home")", obj, function (data) {
+                $("#displayGraph").html(data);
+            });
+        });*@
+    });
+</script>
+
+<h2>@ViewBag.Title</h2>
+
+<form id="form_search" name="form_search" class="form-inline">
+    <label>FG : </label>
+    <select id="selFg" name="selFg" class="input-medium" data-validation="required">
+        <option value="">--</option>
+        @foreach (var item in ViewBag.SelectFG)
+        {
+            <option>@item</option>
+        }
+    </select>
+    <label> Start Month : </label>
+    <input type="text" id="dtFrom" name="dtFrom" class="input-small date-picker" data-validation="required" />
+    <label> End Month : </label>
+    <input type="text" id="dtTo" name="dtTo" class="input-small date-picker" data-validation="required" />
+    <button type="submit" id="btSearch" name="btSearch" class="btn btn-primary">Search</button>
+    <button type="reset" id="btClear" name="btClear" class="btn btn-danger">Clear</button>
+</form>
+
+<div id="displayGraph"></div>

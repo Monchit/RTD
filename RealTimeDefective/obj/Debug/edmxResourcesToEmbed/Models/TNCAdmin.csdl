@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TNC_ADMINModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TNC_ADMINEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="V_Employee_Info" EntityType="TNC_ADMINModel.V_Employee_Info" />
+    <EntitySet Name="View_Organization" EntityType="TNC_ADMINModel.View_Organization" />
+  </EntityContainer>
+  <EntityType Name="V_Employee_Info">
+    <Key>
+      <PropertyRef Name="emp_code" />
+      <PropertyRef Name="LeafOrgLevel" />
+    </Key>
+    <Property Name="emp_code" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+    <Property Name="username" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="password" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="emp_fname" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="emp_lname" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="emp_position" Type="Byte" />
+    <Property Name="position_name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="plant_id" Type="Int32" />
+    <Property Name="plant_name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="dept_id" Type="Int32" />
+    <Property Name="dept_name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="group_id" Type="Int32" />
+    <Property Name="group_name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="sub_group_id" Type="Int32" />
+    <Property Name="sub_group" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="emp_status" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="LeafOrganize" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="LeafOrgGroupId" Type="Int32" />
+    <Property Name="LeafOrgGroup" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="position_level" Type="Byte" />
+    <Property Name="LeafOrgLevel" Type="Int32" Nullable="false" />
+    <Property Name="ext" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="level" Type="Byte" />
+  </EntityType>
+  <EntityType Name="View_Organization">
+    <Key>
+      <PropertyRef Name="active" />
+      <PropertyRef Name="cost_code" />
+      <PropertyRef Name="subgroup_id" />
+    </Key>
+    <Property Name="IsRealCostCode" Type="Int32" />
+    <Property Name="active" Type="Boolean" Nullable="false" />
+    <Property Name="cost_code" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="LeafId" Type="Int32" />
+    <Property Name="LeafLevel" Type="Int32" />
+    <Property Name="LeafTitle" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="plant_id" Type="Int32" />
+    <Property Name="plant_name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="PlantMgr" Type="String" MaxLength="41" Unicode="true" FixedLength="false" />
+    <Property Name="PlantMgr_email" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="dept_id" Type="Int32" />
+    <Property Name="dept_name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="DeptMgr" Type="String" MaxLength="41" Unicode="true" FixedLength="false" />
+    <Property Name="DeptMgr_email" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="group_id" Type="Int32" />
+    <Property Name="group_name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="GroupMgr" Type="String" MaxLength="41" Unicode="true" FixedLength="false" />
+    <Property Name="GroupMgr_email" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+    <Property Name="subgroup_id" Type="Int32" Nullable="false" />
+    <Property Name="sub_group" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>

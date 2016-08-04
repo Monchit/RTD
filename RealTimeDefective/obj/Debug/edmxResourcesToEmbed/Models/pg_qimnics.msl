@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="qimnicsModelStoreContainer" CdmEntityContainer="qimnicsEntities">
+    <EntitySetMapping Name="tm_master_item">
+      <EntityTypeMapping TypeName="qimnicsModel.tm_master_item">
+        <MappingFragment StoreEntitySet="tm_master_item">
+          <ScalarProperty Name="wc" ColumnName="wc" />
+          <ScalarProperty Name="wc_name" ColumnName="wc_name" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="item_description" ColumnName="item_description" />
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="product_code_name" ColumnName="product_code_name" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="source_type" ColumnName="source_type" />
+          <ScalarProperty Name="eng_code" ColumnName="eng_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

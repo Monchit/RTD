@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TNC_ADMINModelStoreContainer" CdmEntityContainer="TNC_ADMINEntities">
+    <EntitySetMapping Name="V_Employee_Info">
+      <EntityTypeMapping TypeName="TNC_ADMINModel.V_Employee_Info">
+        <MappingFragment StoreEntitySet="V_Employee_Info">
+          <ScalarProperty Name="emp_code" ColumnName="emp_code" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="emp_fname" ColumnName="emp_fname" />
+          <ScalarProperty Name="emp_lname" ColumnName="emp_lname" />
+          <ScalarProperty Name="emp_position" ColumnName="emp_position" />
+          <ScalarProperty Name="position_name" ColumnName="position_name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="plant_name" ColumnName="plant_name" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="group_name" ColumnName="group_name" />
+          <ScalarProperty Name="sub_group_id" ColumnName="sub_group_id" />
+          <ScalarProperty Name="sub_group" ColumnName="sub_group" />
+          <ScalarProperty Name="emp_status" ColumnName="emp_status" />
+          <ScalarProperty Name="LeafOrganize" ColumnName="LeafOrganize" />
+          <ScalarProperty Name="LeafOrgGroupId" ColumnName="LeafOrgGroupId" />
+          <ScalarProperty Name="LeafOrgGroup" ColumnName="LeafOrgGroup" />
+          <ScalarProperty Name="position_level" ColumnName="position_level" />
+          <ScalarProperty Name="LeafOrgLevel" ColumnName="LeafOrgLevel" />
+          <ScalarProperty Name="ext" ColumnName="ext" />
+          <ScalarProperty Name="level" ColumnName="level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="View_Organization">
+      <EntityTypeMapping TypeName="TNC_ADMINModel.View_Organization">
+        <MappingFragment StoreEntitySet="View_Organization">
+          <ScalarProperty Name="IsRealCostCode" ColumnName="IsRealCostCode" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="cost_code" ColumnName="cost_code" />
+          <ScalarProperty Name="LeafId" ColumnName="LeafId" />
+          <ScalarProperty Name="LeafLevel" ColumnName="LeafLevel" />
+          <ScalarProperty Name="LeafTitle" ColumnName="LeafTitle" />
+          <ScalarProperty Name="plant_id" ColumnName="plant_id" />
+          <ScalarProperty Name="plant_name" ColumnName="plant_name" />
+          <ScalarProperty Name="PlantMgr" ColumnName="PlantMgr" />
+          <ScalarProperty Name="PlantMgr_email" ColumnName="PlantMgr_email" />
+          <ScalarProperty Name="dept_id" ColumnName="dept_id" />
+          <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+          <ScalarProperty Name="DeptMgr" ColumnName="DeptMgr" />
+          <ScalarProperty Name="DeptMgr_email" ColumnName="DeptMgr_email" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="group_name" ColumnName="group_name" />
+          <ScalarProperty Name="GroupMgr" ColumnName="GroupMgr" />
+          <ScalarProperty Name="GroupMgr_email" ColumnName="GroupMgr_email" />
+          <ScalarProperty Name="subgroup_id" ColumnName="subgroup_id" />
+          <ScalarProperty Name="sub_group" ColumnName="sub_group" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="qimnicsModel.Store" Alias="Self" Provider="Devart.Data.PostgreSql" ProviderManifestToken="PostgreSQL, 9.1.7" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="qimnicsModelStoreContainer">
+    <EntitySet Name="tm_master_item" EntityType="qimnicsModel.Store.tm_master_item" store:Type="Tables" Schema="public" />
+  </EntityContainer>
+  <EntityType Name="tm_master_item">
+    <Key>
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="wc" Type="char" MaxLength="3" />
+    <Property Name="wc_name" Type="char" MaxLength="20" />
+    <Property Name="item_code" Type="char" Nullable="false" MaxLength="30" />
+    <Property Name="item_description" Type="char" MaxLength="42" />
+    <Property Name="product_code" Type="char" MaxLength="4" />
+    <Property Name="product_code_name" Type="char" MaxLength="40" />
+    <Property Name="unit" Type="char" MaxLength="3" />
+    <Property Name="source_type" Type="char" MaxLength="1" />
+    <Property Name="eng_code" Type="char" MaxLength="30" />
+  </EntityType>
+</Schema>

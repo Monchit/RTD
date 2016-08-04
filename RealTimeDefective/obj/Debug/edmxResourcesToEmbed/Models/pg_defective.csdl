@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="defectiveliveModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="defectiveliveEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="tm_defective_cure_date" EntityType="defectiveliveModel.tm_defective_cure_date" />
+    <EntitySet Name="tm_defective_item" EntityType="defectiveliveModel.tm_defective_item" />
+    <EntitySet Name="tm_defective_prod_code" EntityType="defectiveliveModel.tm_defective_prod_code" />
+    <EntitySet Name="tm_defective_rate_job" EntityType="defectiveliveModel.tm_defective_rate_job" />
+    <EntitySet Name="tm_defective_rate_type" EntityType="defectiveliveModel.tm_defective_rate_type" />
+    <EntitySet Name="tm_defective_type" EntityType="defectiveliveModel.tm_defective_type" />
+    <EntitySet Name="tm_defective_wc" EntityType="defectiveliveModel.tm_defective_wc" />
+    <EntitySet Name="td_defective_data" EntityType="defectiveliveModel.td_defective_data" />
+  </EntityContainer>
+  <EntityType Name="tm_defective_cure_date">
+    <Key>
+      <PropertyRef Name="location_cd" />
+      <PropertyRef Name="curing_date" />
+      <PropertyRef Name="wc" />
+      <PropertyRef Name="shift" />
+    </Key>
+    <Property Name="entry_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="entry_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="update_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="update_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="entry_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="update_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="location_cd" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="true" />
+    <Property Name="defective_rate" Type="Double" />
+    <Property Name="curing_date" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="wc" Type="String" Nullable="false" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="shift" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="tm_defective_item">
+    <Key>
+      <PropertyRef Name="location_cd" />
+      <PropertyRef Name="item" />
+    </Key>
+    <Property Name="entry_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="entry_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="update_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="update_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="entry_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="update_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="location_cd" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="true" />
+    <Property Name="defective_rate" Type="Double" />
+    <Property Name="item" Type="String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="tm_defective_prod_code">
+    <Key>
+      <PropertyRef Name="location_cd" />
+      <PropertyRef Name="product_code" />
+    </Key>
+    <Property Name="entry_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="entry_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="update_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="update_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="entry_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="update_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="location_cd" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="true" />
+    <Property Name="defective_rate" Type="Double" />
+    <Property Name="product_code" Type="String" Nullable="false" MaxLength="4" Unicode="true" FixedLength="true" />
+    <Property Name="product_code_name" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="tm_defective_rate_job">
+    <Key>
+      <PropertyRef Name="location_cd" />
+      <PropertyRef Name="job_order_no" />
+    </Key>
+    <Property Name="entry_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="entry_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="update_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="update_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="entry_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="update_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="location_cd" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="true" />
+    <Property Name="defective_rate" Type="Double" />
+    <Property Name="job_order_no" Type="String" Nullable="false" MaxLength="12" Unicode="true" FixedLength="true" />
+    <Property Name="tag_no" Type="String" MaxLength="5" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="tm_defective_rate_type">
+    <Key>
+      <PropertyRef Name="wc" />
+      <PropertyRef Name="location_cd" />
+      <PropertyRef Name="defective_id" />
+    </Key>
+    <Property Name="entry_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="entry_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="update_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="update_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="entry_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="update_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="wc" Type="String" Nullable="false" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="wc_name" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="defective_rate" Type="Double" />
+    <Property Name="location_cd" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="true" />
+    <Property Name="defective_id" Type="Int32" Nullable="false" />
+    <Property Name="defective_name" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="tm_defective_type">
+    <Key>
+      <PropertyRef Name="defective_id" />
+    </Key>
+    <Property Name="entry_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="entry_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="update_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="update_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="entry_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="update_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="defective_id" Type="Int32" Nullable="false" />
+    <Property Name="defective_name" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
+    <Property Name="stat" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="tm_defective_wc">
+    <Key>
+      <PropertyRef Name="wc" />
+      <PropertyRef Name="location_cd" />
+    </Key>
+    <Property Name="entry_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="entry_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="update_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
+    <Property Name="update_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="entry_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="update_user" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="wc" Type="String" Nullable="false" MaxLength="6" Unicode="true" FixedLength="true" />
+    <Property Name="wc_name" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+    <Property Name="defective_rate" Type="Double" />
+    <Property Name="location_cd" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="td_defective_data">
+    <Key>
+      <PropertyRef Name="trans_no" />
+    </Key>
+    <Property Type="Int32" Name="trans_no" Nullable="false" />
+    <Property Type="String" Name="entry_date" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="entry_time" MaxLength="6" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="update_date" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="update_time" MaxLength="6" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="entry_user" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="update_user" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="job_order_no" MaxLength="12" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="lot_no" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="wc" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="machine_no" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="shift" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="process" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="mold" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Type="Int32" Name="mold_set" />
+    <Property Type="String" Name="item" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="defective_name" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Type="Int32" Name="defective_type" />
+    <Property Type="Int32" Name="qty" />
+    <Property Type="Int32" Name="curing_qty" />
+    <Property Type="Int32" Name="cavity_qty" />
+    <Property Type="Int32" Name="no" />
+    <Property Type="Int32" Name="key_cycle" />
+    <Property Type="Int32" Name="good_qty" />
+    <Property Type="String" Name="curing_date" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="prod_code" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="curing_user" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Type="Double" Name="master_def_by_fg" />
+    <Property Type="Double" Name="def_by_fg" />
+    <Property Type="Int32" Name="result_by_fg" />
+    <Property Type="Double" Name="master_def_by_wc" />
+    <Property Type="Double" Name="def_by_wc" />
+    <Property Type="Int32" Name="result_by_wc" />
+    <Property Type="Double" Name="master_def_by_type" />
+    <Property Type="Double" Name="def_by_type" />
+    <Property Type="Int32" Name="result_by_type" />
+    <Property Type="Double" Name="master_def_by_job" />
+    <Property Type="Double" Name="def_by_job" />
+    <Property Type="Int32" Name="result_by_job" />
+    <Property Type="Double" Name="master_def_by_cure_date" />
+    <Property Type="Double" Name="def_by_cure_date" />
+    <Property Type="Int32" Name="result_by_cure_date" />
+    <Property Type="Double" Name="master_def_by_item" />
+    <Property Type="Double" Name="def_by_item" />
+    <Property Type="Int32" Name="result_by_item" />
+    <Property Type="String" Name="location_cd" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="wc_process" MaxLength="6" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="machine_no_process" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="start_curing_date" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="eng_code" MaxLength="30" FixedLength="true" Unicode="true" />
+  </EntityType>
+</Schema>

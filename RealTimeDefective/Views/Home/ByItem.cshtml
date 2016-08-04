@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "By Item";
+}
+
+@section scripts {
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validate({
+            form: '#form_search',
+            onSuccess: function ($form) {
+                var obj = new Object();
+                obj.dtFrom = $("#dtFrom").val();
+                obj.dtTo = $("#dtTo").val();
+                obj.fg = $("#selFg").val();
+                //obj.item = $("selItem").val();
+                $.get("@Url.Action("_GetGraphByItem", "Home")", obj, function (data) {
+                    $("#displayGraph").html(data);
+                });
+                return false; // Will stop the submission of the form
+            }
+        });
+
+        $("#dtFrom").datepicker({
+            //defaultDate: "+1w",
+            dateFormat: 'dd/mm/yy',
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1,
+            maxDate: "0",
+            onClose: function (selectedDate) {
+                $("#dtTo").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#dtTo").datepicker({
+            //defaultDate: "+1w",
+            dateFormat: 'dd/mm/yy',
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1,
+            maxDate: "0",
+            onClose: function (selectedDate) {
+                $("#dtFrom").datepicker("option", "maxDate", selectedDate);
+            }
+        });
+
+        $("#selFg").change(function () {
+            $("#selItem").empty();
+            if ($(this).val() != "") {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetItemByFG")',
+                        dataType: 'json',
+                        data: { fg: $(this).val() },
+                        success: function (datas) {
+                            $("#selItem").append('<option value="">--</option>');
+                            $.each(datas, function (i, data) {
+                                $("#selItem").append('<option value="' + data + '">' + data + '</option>');
+                            });
+                        },
+                        error: function (ex) {
+                            alert('Failed to retrieve item.' + ex);
+                        }
+                    });
+                }
+            return false;
+        });
+
+        @*$('#btSearch').click(function (e) {
+            e.preventDefault();
+            var obj = new Object();
+            obj.dtFrom = $("#dtFrom").val();
+            obj.dtTo = $("#dtTo").val();
+            obj.fg = $("#selFg").val();
+            $.get("@Url.Action("_GetGraphByItem", "Home")", obj, function (data) {
+                $("#displayGraph").html(data);
+            });
+        });*@
+    });
+</script>
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form id="form_search" name="form_search" class="form-inline">
+    <label>FG : </label>
+    <select id="selFg" name="selFg" class="input-medium" data-validation="required">
+        <option value="">--</option>
+        @foreach (var item in ViewBag.SelectFG)
+        {
+            <option>@item</option>
+        }
+    </select>
+    <label> Item : </label>
+    <select id="selItem" name="selItem" class="input-medium">
+    </select>
+    <label> Start Date : </label>
+    <input type="text" id="dtFrom" name="dtFrom" class="input-medium" readonly="true"
+                        data-validation="date" data-validation-format="dd/mm/yyyy" />
+    <label> End Date : </label>
+    <input type="text" id="dtTo" name="dtTo" class="input-medium" readonly="true"
+                        data-validation="date" data-validation-format="dd/mm/yyyy" />
+    <button type="submit" id="btSearch" name="btSearch" class="btn btn-primary">Search</button>
+    <button type="reset" id="btClear" name="btClear" class="btn btn-danger">Clear</button>
+</form>
+
+<div id="displayGraph"></div>

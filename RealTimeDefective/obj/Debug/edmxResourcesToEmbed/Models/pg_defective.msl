@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="defectiveliveModelStoreContainer" CdmEntityContainer="defectiveliveEntities">
+    <EntitySetMapping Name="tm_defective_cure_date">
+      <EntityTypeMapping TypeName="defectiveliveModel.tm_defective_cure_date">
+        <MappingFragment StoreEntitySet="tm_defective_cure_date">
+          <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="entry_user" ColumnName="entry_user" />
+          <ScalarProperty Name="update_user" ColumnName="update_user" />
+          <ScalarProperty Name="location_cd" ColumnName="location_cd" />
+          <ScalarProperty Name="defective_rate" ColumnName="defective_rate" />
+          <ScalarProperty Name="curing_date" ColumnName="curing_date" />
+          <ScalarProperty Name="wc" ColumnName="wc" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tm_defective_item">
+      <EntityTypeMapping TypeName="defectiveliveModel.tm_defective_item">
+        <MappingFragment StoreEntitySet="tm_defective_item">
+          <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="entry_user" ColumnName="entry_user" />
+          <ScalarProperty Name="update_user" ColumnName="update_user" />
+          <ScalarProperty Name="location_cd" ColumnName="location_cd" />
+          <ScalarProperty Name="defective_rate" ColumnName="defective_rate" />
+          <ScalarProperty Name="item" ColumnName="item" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tm_defective_prod_code">
+      <EntityTypeMapping TypeName="defectiveliveModel.tm_defective_prod_code">
+        <MappingFragment StoreEntitySet="tm_defective_prod_code">
+          <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="entry_user" ColumnName="entry_user" />
+          <ScalarProperty Name="update_user" ColumnName="update_user" />
+          <ScalarProperty Name="location_cd" ColumnName="location_cd" />
+          <ScalarProperty Name="defective_rate" ColumnName="defective_rate" />
+          <ScalarProperty Name="product_code" ColumnName="product_code" />
+          <ScalarProperty Name="product_code_name" ColumnName="product_code_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tm_defective_rate_job">
+      <EntityTypeMapping TypeName="defectiveliveModel.tm_defective_rate_job">
+        <MappingFragment StoreEntitySet="tm_defective_rate_job">
+          <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="entry_user" ColumnName="entry_user" />
+          <ScalarProperty Name="update_user" ColumnName="update_user" />
+          <ScalarProperty Name="location_cd" ColumnName="location_cd" />
+          <ScalarProperty Name="defective_rate" ColumnName="defective_rate" />
+          <ScalarProperty Name="job_order_no" ColumnName="job_order_no" />
+          <ScalarProperty Name="tag_no" ColumnName="tag_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tm_defective_rate_type">
+      <EntityTypeMapping TypeName="defectiveliveModel.tm_defective_rate_type">
+        <MappingFragment StoreEntitySet="tm_defective_rate_type">
+          <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="entry_user" ColumnName="entry_user" />
+          <ScalarProperty Name="update_user" ColumnName="update_user" />
+          <ScalarProperty Name="wc" ColumnName="wc" />
+          <ScalarProperty Name="wc_name" ColumnName="wc_name" />
+          <ScalarProperty Name="defective_rate" ColumnName="defective_rate" />
+          <ScalarProperty Name="location_cd" ColumnName="location_cd" />
+          <ScalarProperty Name="defective_id" ColumnName="defective_id" />
+          <ScalarProperty Name="defective_name" ColumnName="defective_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tm_defective_type">
+      <EntityTypeMapping TypeName="defectiveliveModel.tm_defective_type">
+        <MappingFragment StoreEntitySet="tm_defective_type">
+          <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="entry_user" ColumnName="entry_user" />
+          <ScalarProperty Name="update_user" ColumnName="update_user" />
+          <ScalarProperty Name="defective_id" ColumnName="defective_id" />
+          <ScalarProperty Name="defective_name" ColumnName="defective_name" />
+          <ScalarProperty Name="stat" ColumnName="stat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tm_defective_wc">
+      <EntityTypeMapping TypeName="defectiveliveModel.tm_defective_wc">
+        <MappingFragment StoreEntitySet="tm_defective_wc">
+          <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="entry_user" ColumnName="entry_user" />
+          <ScalarProperty Name="update_user" ColumnName="update_user" />
+          <ScalarProperty Name="wc" ColumnName="wc" />
+          <ScalarProperty Name="wc_name" ColumnName="wc_name" />
+          <ScalarProperty Name="defective_rate" ColumnName="defective_rate" />
+          <ScalarProperty Name="location_cd" ColumnName="location_cd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="td_defective_data">
+      <EntityTypeMapping TypeName="defectiveliveModel.td_defective_data">
+        <MappingFragment StoreEntitySet="td_defective_data">
+          <ScalarProperty Name="eng_code" ColumnName="eng_code" />
+          <ScalarProperty Name="start_curing_date" ColumnName="start_curing_date" />
+          <ScalarProperty Name="machine_no_process" ColumnName="machine_no_process" />
+          <ScalarProperty Name="wc_process" ColumnName="wc_process" />
+          <ScalarProperty Name="location_cd" ColumnName="location_cd" />
+          <ScalarProperty Name="result_by_item" ColumnName="result_by_item" />
+          <ScalarProperty Name="def_by_item" ColumnName="def_by_item" />
+          <ScalarProperty Name="master_def_by_item" ColumnName="master_def_by_item" />
+          <ScalarProperty Name="result_by_cure_date" ColumnName="result_by_cure_date" />
+          <ScalarProperty Name="def_by_cure_date" ColumnName="def_by_cure_date" />
+          <ScalarProperty Name="master_def_by_cure_date" ColumnName="master_def_by_cure_date" />
+          <ScalarProperty Name="result_by_job" ColumnName="result_by_job" />
+          <ScalarProperty Name="def_by_job" ColumnName="def_by_job" />
+          <ScalarProperty Name="master_def_by_job" ColumnName="master_def_by_job" />
+          <ScalarProperty Name="result_by_type" ColumnName="result_by_type" />
+          <ScalarProperty Name="def_by_type" ColumnName="def_by_type" />
+          <ScalarProperty Name="master_def_by_type" ColumnName="master_def_by_type" />
+          <ScalarProperty Name="result_by_wc" ColumnName="result_by_wc" />
+          <ScalarProperty Name="def_by_wc" ColumnName="def_by_wc" />
+          <ScalarProperty Name="master_def_by_wc" ColumnName="master_def_by_wc" />
+          <ScalarProperty Name="result_by_fg" ColumnName="result_by_fg" />
+          <ScalarProperty Name="def_by_fg" ColumnName="def_by_fg" />
+          <ScalarProperty Name="master_def_by_fg" ColumnName="master_def_by_fg" />
+          <ScalarProperty Name="curing_user" ColumnName="curing_user" />
+          <ScalarProperty Name="prod_code" ColumnName="prod_code" />
+          <ScalarProperty Name="curing_date" ColumnName="curing_date" />
+          <ScalarProperty Name="good_qty" ColumnName="good_qty" />
+          <ScalarProperty Name="key_cycle" ColumnName="key_cycle" />
+          <ScalarProperty Name="no" ColumnName="no" />
+          <ScalarProperty Name="cavity_qty" ColumnName="cavity_qty" />
+          <ScalarProperty Name="curing_qty" ColumnName="curing_qty" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="defective_type" ColumnName="defective_type" />
+          <ScalarProperty Name="defective_name" ColumnName="defective_name" />
+          <ScalarProperty Name="item" ColumnName="item" />
+          <ScalarProperty Name="mold_set" ColumnName="mold_set" />
+          <ScalarProperty Name="mold" ColumnName="mold" />
+          <ScalarProperty Name="process" ColumnName="process" />
+          <ScalarProperty Name="shift" ColumnName="shift" />
+          <ScalarProperty Name="machine_no" ColumnName="machine_no" />
+          <ScalarProperty Name="wc" ColumnName="wc" />
+          <ScalarProperty Name="lot_no" ColumnName="lot_no" />
+          <ScalarProperty Name="job_order_no" ColumnName="job_order_no" />
+          <ScalarProperty Name="update_user" ColumnName="update_user" />
+          <ScalarProperty Name="entry_user" ColumnName="entry_user" />
+          <ScalarProperty Name="update_time" ColumnName="update_time" />
+          <ScalarProperty Name="update_date" ColumnName="update_date" />
+          <ScalarProperty Name="entry_time" ColumnName="entry_time" />
+          <ScalarProperty Name="entry_date" ColumnName="entry_date" />
+          <ScalarProperty Name="trans_no" ColumnName="trans_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

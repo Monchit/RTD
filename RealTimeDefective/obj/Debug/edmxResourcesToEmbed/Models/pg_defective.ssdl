@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="defectiveliveModel.Store" Alias="Self" Provider="Devart.Data.PostgreSql" ProviderManifestToken="PostgreSQL, 9.1.7" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="defectiveliveModelStoreContainer">
+    <EntitySet Name="td_defective_data" EntityType="defectiveliveModel.Store.td_defective_data" store:Type="Tables" Schema="public" />
+    <EntitySet Name="tm_defective_cure_date" EntityType="defectiveliveModel.Store.tm_defective_cure_date" store:Type="Tables" Schema="public" />
+    <EntitySet Name="tm_defective_item" EntityType="defectiveliveModel.Store.tm_defective_item" store:Type="Tables" Schema="public" />
+    <EntitySet Name="tm_defective_prod_code" EntityType="defectiveliveModel.Store.tm_defective_prod_code" store:Type="Tables" Schema="public" />
+    <EntitySet Name="tm_defective_rate_job" EntityType="defectiveliveModel.Store.tm_defective_rate_job" store:Type="Tables" Schema="public" />
+    <EntitySet Name="tm_defective_rate_type" EntityType="defectiveliveModel.Store.tm_defective_rate_type" store:Type="Tables" Schema="public" />
+    <EntitySet Name="tm_defective_type" EntityType="defectiveliveModel.Store.tm_defective_type" store:Type="Tables" Schema="public" />
+    <EntitySet Name="tm_defective_wc" EntityType="defectiveliveModel.Store.tm_defective_wc" store:Type="Tables" Schema="public" />
+  </EntityContainer>
+  <EntityType Name="td_defective_data">
+    <Key>
+      <PropertyRef Name="trans_no" />
+    </Key>
+    <Property Name="trans_no" Type="int" Nullable="false" />
+    <Property Name="entry_date" Type="char" MaxLength="8" />
+    <Property Name="entry_time" Type="char" MaxLength="6" />
+    <Property Name="update_date" Type="char" MaxLength="8" />
+    <Property Name="update_time" Type="char" MaxLength="6" />
+    <Property Name="entry_user" Type="char" MaxLength="50" />
+    <Property Name="update_user" Type="char" MaxLength="50" />
+    <Property Name="job_order_no" Type="char" MaxLength="12" />
+    <Property Name="lot_no" Type="char" MaxLength="5" />
+    <Property Name="wc" Type="char" MaxLength="5" />
+    <Property Name="machine_no" Type="char" MaxLength="3" />
+    <Property Name="shift" Type="char" MaxLength="1" />
+    <Property Name="process" Type="char" MaxLength="20" />
+    <Property Name="mold" Type="char" MaxLength="30" />
+    <Property Name="mold_set" Type="int" />
+    <Property Name="item" Type="char" MaxLength="30" />
+    <Property Name="defective_name" Type="char" MaxLength="40" />
+    <Property Name="defective_type" Type="int" />
+    <Property Name="qty" Type="int" />
+    <Property Name="curing_qty" Type="int" />
+    <Property Name="cavity_qty" Type="int" />
+    <Property Name="no" Type="int" />
+    <Property Name="key_cycle" Type="int" />
+    <Property Name="good_qty" Type="int" />
+    <Property Name="curing_date" Type="char" MaxLength="8" />
+    <Property Name="prod_code" Type="char" MaxLength="4" />
+    <Property Name="curing_user" Type="char" MaxLength="50" />
+    <Property Name="master_def_by_fg" Type="double precision" />
+    <Property Name="def_by_fg" Type="double precision" />
+    <Property Name="result_by_fg" Type="int" />
+    <Property Name="master_def_by_wc" Type="double precision" />
+    <Property Name="def_by_wc" Type="double precision" />
+    <Property Name="result_by_wc" Type="int" />
+    <Property Name="master_def_by_type" Type="double precision" />
+    <Property Name="def_by_type" Type="double precision" />
+    <Property Name="result_by_type" Type="int" />
+    <Property Name="master_def_by_job" Type="double precision" />
+    <Property Name="def_by_job" Type="double precision" />
+    <Property Name="result_by_job" Type="int" />
+    <Property Name="master_def_by_cure_date" Type="double precision" />
+    <Property Name="def_by_cure_date" Type="double precision" />
+    <Property Name="result_by_cure_date" Type="int" />
+    <Property Name="master_def_by_item" Type="double precision" />
+    <Property Name="def_by_item" Type="double precision" />
+    <Property Name="result_by_item" Type="int" />
+    <Property Name="location_cd" Type="char" MaxLength="3" />
+    <Property Name="wc_process" Type="char" MaxLength="6" />
+    <Property Name="machine_no_process" Type="char" MaxLength="3" />
+    <Property Name="start_curing_date" Type="char" MaxLength="8" />
+    <Property Name="eng_code" Type="char" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="tm_defective_cure_date">
+    <Key>
+      <PropertyRef Name="location_cd" />
+      <PropertyRef Name="curing_date" />
+      <PropertyRef Name="wc" />
+      <PropertyRef Name="shift" />
+    </Key>
+    <Property Name="entry_date" Type="char" MaxLength="8" />
+    <Property Name="entry_time" Type="char" MaxLength="6" />
+    <Property Name="update_date" Type="char" MaxLength="8" />
+    <Property Name="update_time" Type="char" MaxLength="6" />
+    <Property Name="entry_user" Type="char" MaxLength="50" />
+    <Property Name="update_user" Type="char" MaxLength="50" />
+    <Property Name="location_cd" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="defective_rate" Type="double precision" />
+    <Property Name="curing_date" Type="char" Nullable="false" MaxLength="8" />
+    <Property Name="wc" Type="char" Nullable="false" MaxLength="6" />
+    <Property Name="shift" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="tm_defective_item">
+    <Key>
+      <PropertyRef Name="location_cd" />
+      <PropertyRef Name="item" />
+    </Key>
+    <Property Name="entry_date" Type="char" MaxLength="8" />
+    <Property Name="entry_time" Type="char" MaxLength="6" />
+    <Property Name="update_date" Type="char" MaxLength="8" />
+    <Property Name="update_time" Type="char" MaxLength="6" />
+    <Property Name="entry_user" Type="char" MaxLength="50" />
+    <Property Name="update_user" Type="char" MaxLength="50" />
+    <Property Name="location_cd" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="defective_rate" Type="double precision" />
+    <Property Name="item" Type="char" Nullable="false" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="tm_defective_prod_code">
+    <Key>
+      <PropertyRef Name="location_cd" />
+      <PropertyRef Name="product_code" />
+    </Key>
+    <Property Name="entry_date" Type="char" MaxLength="8" />
+    <Property Name="entry_time" Type="char" MaxLength="6" />
+    <Property Name="update_date" Type="char" MaxLength="8" />
+    <Property Name="update_time" Type="char" MaxLength="6" />
+    <Property Name="entry_user" Type="char" MaxLength="50" />
+    <Property Name="update_user" Type="char" MaxLength="50" />
+    <Property Name="location_cd" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="defective_rate" Type="double precision" />
+    <Property Name="product_code" Type="char" Nullable="false" MaxLength="4" />
+    <Property Name="product_code_name" Type="char" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="tm_defective_rate_job">
+    <Key>
+      <PropertyRef Name="location_cd" />
+      <PropertyRef Name="job_order_no" />
+    </Key>
+    <Property Name="entry_date" Type="char" MaxLength="8" />
+    <Property Name="entry_time" Type="char" MaxLength="6" />
+    <Property Name="update_date" Type="char" MaxLength="8" />
+    <Property Name="update_time" Type="char" MaxLength="6" />
+    <Property Name="entry_user" Type="char" MaxLength="50" />
+    <Property Name="update_user" Type="char" MaxLength="50" />
+    <Property Name="location_cd" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="defective_rate" Type="double precision" />
+    <Property Name="job_order_no" Type="char" Nullable="false" MaxLength="12" />
+    <Property Name="tag_no" Type="char" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="tm_defective_rate_type">
+    <Key>
+      <PropertyRef Name="wc" />
+      <PropertyRef Name="location_cd" />
+      <PropertyRef Name="defective_id" />
+    </Key>
+    <Property Name="entry_date" Type="char" MaxLength="8" />
+    <Property Name="entry_time" Type="char" MaxLength="6" />
+    <Property Name="update_date" Type="char" MaxLength="8" />
+    <Property Name="update_time" Type="char" MaxLength="6" />
+    <Property Name="entry_user" Type="char" MaxLength="50" />
+    <Property Name="update_user" Type="char" MaxLength="50" />
+    <Property Name="wc" Type="char" Nullable="false" MaxLength="6" />
+    <Property Name="wc_name" Type="char" MaxLength="20" />
+    <Property Name="defective_rate" Type="double precision" />
+    <Property Name="location_cd" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="defective_id" Type="int" Nullable="false" />
+    <Property Name="defective_name" Type="char" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="tm_defective_type">
+    <Key>
+      <PropertyRef Name="defective_id" />
+    </Key>
+    <Property Name="entry_date" Type="char" MaxLength="8" />
+    <Property Name="entry_time" Type="char" MaxLength="6" />
+    <Property Name="update_date" Type="char" MaxLength="8" />
+    <Property Name="update_time" Type="char" MaxLength="6" />
+    <Property Name="entry_user" Type="char" MaxLength="50" />
+    <Property Name="update_user" Type="char" MaxLength="50" />
+    <Property Name="defective_id" Type="int" Nullable="false" />
+    <Property Name="defective_name" Type="char" MaxLength="40" />
+    <Property Name="stat" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="tm_defective_wc">
+    <Key>
+      <PropertyRef Name="wc" />
+      <PropertyRef Name="location_cd" />
+    </Key>
+    <Property Name="entry_date" Type="char" MaxLength="8" />
+    <Property Name="entry_time" Type="char" MaxLength="6" />
+    <Property Name="update_date" Type="char" MaxLength="8" />
+    <Property Name="update_time" Type="char" MaxLength="6" />
+    <Property Name="entry_user" Type="char" MaxLength="50" />
+    <Property Name="update_user" Type="char" MaxLength="50" />
+    <Property Name="wc" Type="char" Nullable="false" MaxLength="6" />
+    <Property Name="wc_name" Type="char" MaxLength="20" />
+    <Property Name="defective_rate" Type="double precision" />
+    <Property Name="location_cd" Type="char" Nullable="false" MaxLength="3" />
+  </EntityType>
+</Schema>
