@@ -1,0 +1,24 @@
+﻿
+<table class="table" style="width:30%;">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Def. Mode</th>
+            <th>Def. Q'ty</th>
+        </tr>
+    </thead>
+    <tbody>
+    @{
+        var i = 1;
+        foreach (var item in ViewBag.DefMode)
+        {
+        <tr>
+            <td>@i</td>
+            <td>@item</td>
+            <td>@item.def</td>
+        </tr>
+            i++;
+        }
+    }
+    </tbody>
+</table>

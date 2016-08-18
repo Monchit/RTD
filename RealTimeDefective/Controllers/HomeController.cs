@@ -793,5 +793,205 @@ namespace RealTimeDefective.Controllers
             return View();
         }
 
+        public ActionResult DefModeTo3D()
+        {
+            ViewBag.SelectFG = (from a in dbQim.tm_master_item
+                                where a.product_code != ""
+                                select a.product_code).Distinct().OrderBy(o => o);
+            return View();
+        }
+
+        public ActionResult ItemTo3D()
+        {
+            ViewBag.SelectFG = (from a in dbQim.tm_master_item
+                                where a.product_code != ""
+                                select a.product_code).Distinct().OrderBy(o => o);
+            return View();
+        }
+
+        public ActionResult _TableDefMode(string dtFrom, string dtTo, string fg, string eng_code = "")
+        {
+            string[] tdf = dtFrom.Split('/');
+            string dfm = tdf[2] + tdf[1] + tdf[0];
+            string[] tdt = dtTo.Split('/');
+            string dto = tdt[2] + tdt[1] + tdt[0];
+
+            var temp = from a in dbDef.td_defective_data
+                       where a.prod_code == fg &&
+                       a.start_curing_date.CompareTo(dfm) >= 0 && a.start_curing_date.CompareTo(dto) <= 0
+                       join b in dbDef.tm_defective_type on a.defective_type equals b.defective_id into ab
+                       from b in ab.DefaultIfEmpty()
+                       select new { item = a.eng_code, job = a.job_order_no, def = a.qty, prd = a.curing_qty, 
+                                    tid = b.defective_id, tname = b.defective_name, curdt = a.start_curing_date };
+
+            //var query = dbDef.td_defective_data.Where(w => w.prod_code == fg 
+            //            && w.start_curing_date.CompareTo(dfm) >= 0 && w.start_curing_date.CompareTo(dto) <= 0);
+
+            if (!string.IsNullOrEmpty(eng_code))
+            {
+                temp = temp.Where(w => w.item == eng_code);
+            }
+
+            var query1 = from p in temp
+                         group p by p.tname into g
+                         select new { def_type = g.Key, def = g.Sum(s => s.def) };
+
+            ViewBag.DefMode = query1.OrderBy(o => o.def);
+
+            return PartialView();
+        }
+
+        public JsonResult TableDefMode(string dtFrom, string dtTo, string fg, string item = "")
+        {
+            string[] tdf = dtFrom.Split('/');
+            string dfm = tdf[2] + tdf[1] + tdf[0];
+            string[] tdt = dtTo.Split('/');
+            string dto = tdt[2] + tdt[1] + tdt[0];
+
+            var temp = from a in dbDef.td_defective_data
+                       where a.prod_code == fg &&
+                       a.start_curing_date.CompareTo(dfm) >= 0 && a.start_curing_date.CompareTo(dto) <= 0
+                       join b in dbDef.tm_defective_type on a.defective_type equals b.defective_id into ab
+                       from b in ab.DefaultIfEmpty()
+                       select new
+                       {
+                           item = a.eng_code,
+                           job = a.job_order_no,
+                           def = a.qty,
+                           prd = a.curing_qty,
+                           tid = b.defective_id,
+                           tname = b.defective_name,
+                           curdt = a.start_curing_date
+                       };
+
+            //var query = dbDef.td_defective_data.Where(w => w.prod_code == fg 
+            //            && w.start_curing_date.CompareTo(dfm) >= 0 && w.start_curing_date.CompareTo(dto) <= 0);
+
+            if (!string.IsNullOrEmpty(item))
+            {
+                temp = temp.Where(w => w.item == item);
+            }
+
+            var query1 = (from p in temp
+                          group p by new { p.tid, p.tname } into g
+                          select new { tid = g.Key.tid, tname = g.Key.tname, def = g.Sum(p => p.def) }).OrderByDescending(o => o.def);
+
+            return Json(query1, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult TableItem(string dtFrom, string dtTo, string fg, int mode = 0)
+        {
+            string[] tdf = dtFrom.Split('/');
+            string dfm = tdf[2] + tdf[1] + tdf[0];
+            string[] tdt = dtTo.Split('/');
+            string dto = tdt[2] + tdt[1] + tdt[0];
+
+            var temp = from a in dbDef.td_defective_data
+                       where a.prod_code == fg &&
+                       a.start_curing_date.CompareTo(dfm) >= 0 && a.start_curing_date.CompareTo(dto) <= 0
+                       join b in dbDef.tm_defective_type on a.defective_type equals b.defective_id into ab
+                       from b in ab.DefaultIfEmpty()
+                       select new
+                       {
+                           item = a.eng_code,
+                           //job = a.job_order_no,
+                           def = a.qty,
+                           prd = a.curing_qty,
+                           tid = b.defective_id,
+                           //tname = b.defective_name,
+                           curdt = a.start_curing_date
+                       };
+
+            if (mode != 0)
+            {
+                temp = temp.Where(w => w.tid == mode);
+            }
+
+            var query1 = (from p in temp
+                          group p by p.item into g
+                          select new { item = g.Key, def = g.Sum(p => p.def) }).OrderByDescending(o => o.def);
+
+            return Json(query1, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult TableWC(string dtFrom, string dtTo, string fg, string item = "", int mode = 0)
+        {
+            string[] tdf = dtFrom.Split('/');
+            string dfm = tdf[2] + tdf[1] + tdf[0];
+            string[] tdt = dtTo.Split('/');
+            string dto = tdt[2] + tdt[1] + tdt[0];
+
+            var temp = from a in dbDef.td_defective_data
+                       where a.prod_code == fg &&
+                       a.start_curing_date.CompareTo(dfm) >= 0 && a.start_curing_date.CompareTo(dto) <= 0
+                       join b in dbDef.tm_defective_type on a.defective_type equals b.defective_id into ab
+                       from b in ab.DefaultIfEmpty()
+                       select new
+                       {
+                           item = a.eng_code,
+                           //job = a.job_order_no,
+                           def = a.qty,
+                           prd = a.curing_qty,
+                           tid = b.defective_id,
+                           //tname = b.defective_name,
+                           wc = a.wc + "/" + a.machine_no,
+                           curdt = a.start_curing_date
+                       };
+
+            if (!string.IsNullOrEmpty(item))
+            {
+                temp = temp.Where(w => w.item == item);
+            }
+            if (mode != 0)
+            {
+                temp = temp.Where(w => w.tid == mode);
+            }
+
+            var query1 = (from p in temp
+                          group p by p.wc into g
+                          select new { wc = g.Key, def = g.Sum(p => p.def) }).OrderByDescending(o => o.def);
+
+            return Json(query1, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult TableDay(string dtFrom, string dtTo, string fg, string item = "", int mode = 0)
+        {
+            string[] tdf = dtFrom.Split('/');
+            string dfm = tdf[2] + tdf[1] + tdf[0];
+            string[] tdt = dtTo.Split('/');
+            string dto = tdt[2] + tdt[1] + tdt[0];
+
+            var temp = from a in dbDef.td_defective_data
+                       where a.prod_code == fg &&
+                       a.start_curing_date.CompareTo(dfm) >= 0 && a.start_curing_date.CompareTo(dto) <= 0
+                       join b in dbDef.tm_defective_type on a.defective_type equals b.defective_id into ab
+                       from b in ab.DefaultIfEmpty()
+                       select new
+                       {
+                           item = a.eng_code,
+                           //job = a.job_order_no,
+                           def = a.qty,
+                           prd = a.curing_qty,
+                           tid = b.defective_id,
+                           //tname = b.defective_name,
+                           //wc = a.wc + "/" + a.machine_no,
+                           curdt = a.start_curing_date
+                       };
+
+            if (!string.IsNullOrEmpty(item))
+            {
+                temp = temp.Where(w => w.item == item);
+            }
+            if (mode != 0)
+            {
+                temp = temp.Where(w => w.tid == mode);
+            }
+
+            var query1 = (from p in temp
+                          group p by p.curdt into g
+                          select new { dt = g.Key, def = g.Sum(p => p.def) }).OrderBy(o => o.dt);//.OrderByDescending(o => o.def);
+
+            return Json(query1, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -1,0 +1,322 @@
+﻿@{
+    ViewBag.Title = "-";
+}
+
+@section scripts {
+    <script src="~/Scripts/moment.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.validate({
+                form: '#form_search',
+                onSuccess: function ($form) {
+
+                    var obj = new Object();
+                    obj.fg = $("#selFg").val();
+                    obj.dtFrom = $("#dtFrom").val();
+                    obj.dtTo = $("#dtTo").val();
+
+                    var remote = "@Url.Action("TableDefMode", "Home")";
+                    $.post(remote, obj, function (data) {
+                        $("#v1").html("");
+                        $("#v2").html("");
+                        $("#v3").html("");
+                        $("#v4").html("");
+                        var content = "<table class='table table-bordered table-hover'><thead><tr><th>No.</th><th>Def. Mode</th><th>Def. Q'ty</th></tr></thead><tbody>";
+                        var sum = 0;
+                        var top = 0;
+                        for (var i = 0; i < data.length; i++) {
+                            if (i < 3) {
+                                content += "<tr><td>" + (i + 1) + "</td><td>" + data[i].tname + "</td><td><a class='v1tov2' data-mode='" + data[i].tid + "'>" + data[i].def + "</a></td></tr>";
+                                top += data[i].def;
+                            }
+                            sum += data[i].def;
+                        }
+                        content += "<tr><td></td><td>Other</td><td>" + (sum - top) + "</td></tr>";
+                        content += "<tr><td></td><td><b>Total</b></td><td><b>" + sum + "</b></td></tbody></table>";
+                        $('#v1').append(content);
+                    });
+                    return false; // Will stop the submission of the form
+                }
+            });
+
+            $(document).on("click", ".v1tov2", function (event) {
+                //$(this).parent().parent().addClass("info");
+                var obj = new Object();
+                obj.fg = $("#selFg").val();
+                obj.dtFrom = $("#dtFrom").val();
+                obj.dtTo = $("#dtTo").val();
+                obj.mode = $(this).attr("data-mode");
+
+                var remote = "@Url.Action("TableItem", "Home")";
+            $.post(remote, obj, function (data) {
+                $("#v2").html("");
+                var content = "<table class='table'><thead><tr><th>No.</th><th>Item</th><th>Def. Q'ty</th></tr></thead><tbody>";
+                var sum = 0;
+                var top = 0;
+                for (var i = 0; i < data.length; i++) {
+                    if (i < 3) {
+                        content += "<tr><td>" + (i + 1) + "</td><td>" + data[i].item + "</td><td>" + data[i].def + "</td></tr>";
+                        top += data[i].def;
+                    }
+                    sum += data[i].def;
+                }
+                content += "<tr><td></td><td>Other</td><td>" + (sum - top) + "</td></tr>";
+                content += "<tr><td></td><td><b>Total</b></td><td><b>" + sum + "</b></td></tbody></table>";
+                $('#v2').append(content);
+            });
+
+            var remote = "@Url.Action("TableWC", "Home")";
+            $.post(remote, obj, function (data) {
+                $("#v3").html("");
+                var content = "<table class='table'><thead><tr><th>No.</th><th>WC/MC</th><th>Def. Q'ty</th></tr></thead><tbody>";
+                var sum = 0;
+                var top = 0;
+                for (var i = 0; i < data.length; i++) {
+                    if (i < 3) {
+                        content += "<tr><td>" + (i + 1) + "</td><td>" + data[i].wc + "</td><td>" + data[i].def + "</td></tr>";
+                        top += data[i].def;
+                    }
+                    sum += data[i].def;
+                }
+                content += "<tr><td></td><td>Other</td><td>" + (sum - top) + "</td></tr>";
+                content += "<tr><td></td><td><b>Total</b></td><td><b>" + sum + "</b></td></tbody></table>";
+                $('#v3').append(content);
+            });
+
+            var remote = "@Url.Action("TableDay", "Home")";
+            $.post(remote, obj, function (data) {
+                $("#v4").html("");
+                var content = "<table class='table'><thead><tr><th>Date</th><th>Def. Q'ty</th></tr></thead><tbody>";
+                var sum = 0;
+                //var top = 0;
+                for (var i = 0; i < data.length; i++) {
+                    //if (i < 3) {
+                    //    content += "<tr><td>" + (i + 1) + "</td><td>" + data[i].wc + "</td><td>" + data[i].def + "</td></tr>";
+                    //    top += data[i].def;
+                    //}
+                    content += "<tr><td>" + moment(data[i].dt, "YYYYMMDD").format("ddd, MMM D YYYY") + "</td><td>" + data[i].def + "</td></tr>";
+                    sum += data[i].def;
+                }
+                //content += "<tr><td></td><td>Other</td><td>" + (sum - top) + "</td></tr>";
+                content += "<tr><td><b>Total</b></td><td><b>" + sum + "</b></td></tbody></table>";
+                $('#v4').append(content);
+            });
+
+            //$("#v4").html("");
+            //var content = "<table class='table table-condensed'><thead><tr><th>From</th><th>To</th><th></th><th>Def. Q'ty</th></tr></thead><tbody>";
+            //for (var i = 0; i < 4; i++) {
+            //    content += "<tr><td><input type='text' id='dtF" + i + "' name='dtF" + i + "' class='subfm input-small' readonly='true' /></td><td><input type='text' id='dtT" + i + "' name='dtT" + i + "' class='subto input-small' readonly='true' /></td><td>" + (i + 1) + "</td><td></td></tr>";
+            //}
+            //content += "</tbody></table>";
+            //$('#v4').append(content);
+
+            //$(".subfm,.subto").datepicker({
+            //    dateFormat: 'dd/mm/yy'
+            //    //minDate: $("dtFrom").datepicker('getDate'),
+            //    //maxDate: $("dtTo").datepicker('getDate')
+            //});
+        });
+
+            $("#dtFrom").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                numberOfMonths: 1,
+                maxDate: "0",
+                onClose: function (selectedDate) {
+                    $("#dtTo").datepicker("option", "minDate", selectedDate);
+                }
+            });
+            $("#dtTo").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                numberOfMonths: 1,
+                maxDate: "0",
+                onClose: function (selectedDate) {
+                    $("#dtFrom").datepicker("option", "maxDate", selectedDate);
+                }
+            });
+
+            //---------------------------------------//
+            $.validate({
+                form: '#form_search1',
+                onSuccess: function ($form) {
+
+                    var obj = new Object();
+                    obj.fg = $("#selFg1").val();
+                    obj.dtFrom = $("#dtFrom1").val();
+                    obj.dtTo = $("#dtTo1").val();
+
+                    var remote = "@Url.Action("TableItem", "Home")";
+            $.post(remote, obj, function (data) {
+                $("#i1").html("");
+                $("#i2").html("");
+                $("#i3").html("");
+                $("#i4").html("");
+                var content = "<table class='table table-bordered table-hover'><thead><tr><th>No.</th><th>Item</th><th>Def. Q'ty</th></tr></thead><tbody>";
+                var sum = 0;
+                var top = 0;
+                for (var i = 0; i < data.length; i++) {
+                    if (i < 3) {
+                        content += "<tr><td>" + (i + 1) + "</td><td>" + data[i].item + "</td><td><a class='i1toi2' data-item='" + data[i].item + "'>" + data[i].def + "</a></td></tr>";
+                        top += data[i].def;
+                    }
+                    sum += data[i].def;
+                }
+                content += "<tr><td></td><td>Other</td><td>" + (sum - top) + "</td></tr>";
+                content += "<tr><td></td><td><b>Total</b></td><td><b>" + sum + "</b></td></tbody></table>";
+                $('#i1').append(content);
+            });
+            return false; // Will stop the submission of the form
+        }
+    });
+
+            $(document).on("click", ".i1toi2", function (event) {
+                var obj = new Object();
+                obj.fg = $("#selFg1").val();
+                obj.dtFrom = $("#dtFrom1").val();
+                obj.dtTo = $("#dtTo1").val();
+                obj.item = $(this).attr("data-item");
+
+                var remote = "@Url.Action("TableDefMode", "Home")";
+            $.post(remote, obj, function (data) {
+                $("#i2").html("");
+                var content = "<table class='table'><thead><tr><th>No.</th><th>Def. Mode</th><th>Def. Q'ty</th></tr></thead><tbody>";
+                var sum = 0;
+                var top = 0;
+                for (var i = 0; i < data.length; i++) {
+                    if (i < 3) {
+                        content += "<tr><td>" + (i + 1) + "</td><td>" + data[i].tname + "</td><td>" + data[i].def + "</td></tr>";
+                        top += data[i].def;
+                    }
+                    sum += data[i].def;
+                }
+                content += "<tr><td></td><td>Other</td><td>" + (sum - top) + "</td></tr>";
+                content += "<tr><td></td><td><b>Total</b></td><td><b>" + sum + "</b></td></tbody></table>";
+                $('#i2').append(content);
+            });
+
+            var remote = "@Url.Action("TableWC", "Home")";
+            $.post(remote, obj, function (data) {
+                $("#i3").html("");
+                var content = "<table class='table'><thead><tr><th>No.</th><th>WC/MC</th><th>Def. Q'ty</th></tr></thead><tbody>";
+                var sum = 0;
+                var top = 0;
+                for (var i = 0; i < data.length; i++) {
+                    if (i < 3) {
+                        content += "<tr><td>" + (i + 1) + "</td><td>" + data[i].wc + "</td><td>" + data[i].def + "</td></tr>";
+                        top += data[i].def;
+                    }
+                    sum += data[i].def;
+                }
+                content += "<tr><td></td><td>Other</td><td>" + (sum - top) + "</td></tr>";
+                content += "<tr><td></td><td><b>Total</b></td><td><b>" + sum + "</b></td></tbody></table>";
+                $('#i3').append(content);
+            });
+
+            var remote = "@Url.Action("TableDay", "Home")";
+            $.post(remote, obj, function (data) {
+                $("#i4").html("");
+                var content = "<table class='table'><thead><tr><th>Date</th><th>Def. Q'ty</th></tr></thead><tbody>";
+                var sum = 0;
+                //var top = 0;
+                for (var i = 0; i < data.length; i++) {
+                    //if (i < 3) {
+                    //    content += "<tr><td>" + (i + 1) + "</td><td>" + data[i].wc + "</td><td>" + data[i].def + "</td></tr>";
+                    //    top += data[i].def;
+                    //}
+                    content += "<tr><td>" + moment(data[i].dt, "YYYYMMDD").format("ddd, MMM D YYYY") + "</td><td>" + data[i].def + "</td></tr>";
+                    sum += data[i].def;
+                }
+                //content += "<tr><td></td><td>Other</td><td>" + (sum - top) + "</td></tr>";
+                content += "<tr><td><b>Total</b></td><td><b>" + sum + "</b></td></tbody></table>";
+                $('#i4').append(content);
+            });
+
+        });
+
+            $("#dtFrom1").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                numberOfMonths: 1,
+                maxDate: "0",
+                onClose: function (selectedDate) {
+                    $("#dtTo1").datepicker("option", "minDate", selectedDate);
+                }
+            });
+            $("#dtTo1").datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                numberOfMonths: 1,
+                maxDate: "0",
+                onClose: function (selectedDate) {
+                    $("#dtFrom1").datepicker("option", "maxDate", selectedDate);
+                }
+            });
+        });
+    </script>
+}
+
+<h3>Defective Mode</h3>
+<form id="form_search" name="form_search" class="form-inline">
+    <label>FG : </label>
+    <select id="selFg" name="selFg" class="input-small" data-validation="required">
+        <option value="">--</option>
+        @foreach (var item in ViewBag.SelectFG)
+        {
+            <option>@item</option>
+        }
+    </select>
+    <label>Start Date : </label>
+    <input type="text" id="dtFrom" name="dtFrom" class="input-small" readonly="true"
+        data-validation="date" data-validation-format="dd/mm/yyyy" />
+    <label>End Date : </label>
+    <input type="text" id="dtTo" name="dtTo" class="input-small" readonly="true"
+        data-validation="date" data-validation-format="dd/mm/yyyy" />
+    <button type="submit" id="btSearch" name="btSearch" class="btn btn-primary">Search</button>
+    <button type="reset" id="btClear" name="btClear" class="btn btn-danger">Clear</button>
+</form>
+
+<div class="row-fluid">
+    <div class="span4" id="v1"></div>
+    <div class="span4" id="v2"></div>
+</div>
+
+<div class="row-fluid">
+    <div class="span4" id="v3"></div>
+    <div class="span4" id="v4"></div>
+</div>
+
+<h3>Item</h3>
+
+<form id="form_search1" name="form_search1" class="form-inline">
+    <label>FG : </label>
+    <select id="selFg1" name="selFg1" class="input-small" data-validation="required">
+        <option value="">--</option>
+        @foreach (var item in ViewBag.SelectFG)
+        {
+            <option>@item</option>
+        }
+    </select>
+    <label>Start Date : </label>
+    <input type="text" id="dtFrom1" name="dtFrom1" class="input-small" readonly="true"
+        data-validation="date" data-validation-format="dd/mm/yyyy" />
+    <label>End Date : </label>
+    <input type="text" id="dtTo1" name="dtTo1" class="input-small" readonly="true"
+        data-validation="date" data-validation-format="dd/mm/yyyy" />
+    <button type="submit" id="btSearch1" name="btSearch1" class="btn btn-primary">Search</button>
+    <button type="reset" id="btClear1" name="btClear1" class="btn btn-danger">Clear</button>
+</form>
+
+<div class="row-fluid">
+    <div class="span4" id="i1"></div>
+    <div class="span4" id="i2"></div>
+</div>
+
+<div class="row-fluid">
+    <div class="span4" id="i3"></div>
+    <div class="span4" id="i4"></div>
+</div>

@@ -43,6 +43,28 @@
             }
         });
 
+        $("#selFg").change(function () {
+            $("#selItem").empty();
+            if ($(this).val() != "") {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetItemByFG")',
+                        dataType: 'json',
+                        data: { fg: $(this).val() },
+                        success: function (datas) {
+                            $("#selItem").append('<option value="">--</option>');
+                            $.each(datas, function (i, data) {
+                                $("#selItem").append('<option value="' + data + '">' + data + '</option>');
+                            });
+                        },
+                        error: function (ex) {
+                            alert('Failed to retrieve item.' + ex);
+                        }
+                    });
+                }
+            return false;
+        });
+
         @*$('#btSearch').click(function (e) {
             e.preventDefault();
             var obj = new Object();
@@ -70,8 +92,6 @@
     </select>
     <label> Item : </label>
     <select id="selItem" name="selItem" class="input-medium">
-        <option value="">--</option>
-
     </select>
     <label> Start Date : </label>
     <input type="text" id="dtFrom" name="dtFrom" class="input-medium" readonly="true"
