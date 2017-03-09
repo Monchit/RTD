@@ -43,7 +43,7 @@
             }
         });
 
-        $("#selFg").change(function () {
+        @*$("#selFg").change(function () {
             $("#selItem").empty();
             if ($(this).val() != "") {
                 $.ajax({
@@ -63,7 +63,7 @@
                     });
                 }
             return false;
-        });
+        });*@
 
         @*$('#btSearch').click(function (e) {
             e.preventDefault();
@@ -90,9 +90,9 @@
             <option>@item</option>
         }
     </select>
-    <label> Item : </label>
+    @*<label> Item : </label>
     <select id="selItem" name="selItem" class="input-medium">
-    </select>
+    </select>*@
     <label> Start Date : </label>
     <input type="text" id="dtFrom" name="dtFrom" class="input-medium" readonly="true"
                         data-validation="date" data-validation-format="dd/mm/yyyy" />

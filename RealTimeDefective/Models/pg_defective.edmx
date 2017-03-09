@@ -31,7 +31,7 @@
           <Property Name="wc" Type="char" MaxLength="5" />
           <Property Name="machine_no" Type="char" MaxLength="3" />
           <Property Name="shift" Type="char" MaxLength="1" />
-          <Property Name="process" Type="char" MaxLength="20" />
+          <Property Name="process" Type="char" MaxLength="50" />
           <Property Name="mold" Type="char" MaxLength="30" />
           <Property Name="mold_set" Type="int" />
           <Property Name="item" Type="char" MaxLength="30" />
@@ -69,6 +69,7 @@
           <Property Name="machine_no_process" Type="char" MaxLength="3" />
           <Property Name="start_curing_date" Type="char" MaxLength="8" />
           <Property Name="eng_code" Type="char" MaxLength="30" />
+          <Property Name="process_user_id" Type="char" MaxLength="6" />
         </EntityType>
         <EntityType Name="tm_defective_cure_date">
           <Key>
@@ -158,6 +159,7 @@
         <EntityType Name="tm_defective_type">
           <Key>
             <PropertyRef Name="defective_id" />
+            <PropertyRef Name="location_cd" />
           </Key>
           <Property Name="entry_date" Type="char" MaxLength="8" />
           <Property Name="entry_time" Type="char" MaxLength="6" />
@@ -168,6 +170,8 @@
           <Property Name="defective_id" Type="int" Nullable="false" />
           <Property Name="defective_name" Type="char" MaxLength="40" />
           <Property Name="stat" Type="char" MaxLength="1" />
+          <Property Name="location_cd" Type="char" Nullable="false" MaxLength="3" />
+          <Property Name="count_sign" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tm_defective_wc">
           <Key>
@@ -287,6 +291,7 @@
         <EntityType Name="tm_defective_type">
           <Key>
             <PropertyRef Name="defective_id" />
+            <PropertyRef Name="location_cd" />
           </Key>
           <Property Name="entry_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
           <Property Name="entry_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
@@ -297,6 +302,8 @@
           <Property Name="defective_id" Type="Int32" Nullable="false" />
           <Property Name="defective_name" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
           <Property Name="stat" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
+          <Property Type="String" Name="location_cd" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Type="Int32" Name="count_sign" Nullable="false" />
         </EntityType>
         <EntityType Name="tm_defective_wc">
           <Key>
@@ -368,6 +375,7 @@
           <Property Type="String" Name="machine_no_process" MaxLength="3" FixedLength="true" Unicode="true" />
           <Property Type="String" Name="start_curing_date" MaxLength="8" FixedLength="true" Unicode="true" />
           <Property Type="String" Name="eng_code" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="process_user_id" MaxLength="6" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -460,6 +468,8 @@
           <EntitySetMapping Name="tm_defective_type">
             <EntityTypeMapping TypeName="defectiveliveModel.tm_defective_type">
               <MappingFragment StoreEntitySet="tm_defective_type">
+                <ScalarProperty Name="count_sign" ColumnName="count_sign" />
+                <ScalarProperty Name="location_cd" ColumnName="location_cd" />
                 <ScalarProperty Name="entry_date" ColumnName="entry_date" />
                 <ScalarProperty Name="entry_time" ColumnName="entry_time" />
                 <ScalarProperty Name="update_date" ColumnName="update_date" />
@@ -491,6 +501,7 @@
           <EntitySetMapping Name="td_defective_data">
             <EntityTypeMapping TypeName="defectiveliveModel.td_defective_data">
               <MappingFragment StoreEntitySet="td_defective_data">
+                <ScalarProperty Name="process_user_id" ColumnName="process_user_id" />
                 <ScalarProperty Name="eng_code" ColumnName="eng_code" />
                 <ScalarProperty Name="start_curing_date" ColumnName="start_curing_date" />
                 <ScalarProperty Name="machine_no_process" ColumnName="machine_no_process" />

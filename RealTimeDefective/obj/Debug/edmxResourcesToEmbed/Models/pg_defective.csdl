@@ -98,6 +98,7 @@
   <EntityType Name="tm_defective_type">
     <Key>
       <PropertyRef Name="defective_id" />
+      <PropertyRef Name="location_cd" />
     </Key>
     <Property Name="entry_date" Type="String" MaxLength="8" Unicode="true" FixedLength="true" />
     <Property Name="entry_time" Type="String" MaxLength="6" Unicode="true" FixedLength="true" />
@@ -108,6 +109,8 @@
     <Property Name="defective_id" Type="Int32" Nullable="false" />
     <Property Name="defective_name" Type="String" MaxLength="40" Unicode="true" FixedLength="true" />
     <Property Name="stat" Type="String" MaxLength="1" Unicode="true" FixedLength="true" />
+    <Property Type="String" Name="location_cd" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Type="Int32" Name="count_sign" Nullable="false" />
   </EntityType>
   <EntityType Name="tm_defective_wc">
     <Key>
@@ -179,5 +182,6 @@
     <Property Type="String" Name="machine_no_process" MaxLength="3" FixedLength="true" Unicode="true" />
     <Property Type="String" Name="start_curing_date" MaxLength="8" FixedLength="true" Unicode="true" />
     <Property Type="String" Name="eng_code" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Type="String" Name="process_user_id" MaxLength="6" FixedLength="true" Unicode="true" />
   </EntityType>
 </Schema>

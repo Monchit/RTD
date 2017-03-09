@@ -64,5 +64,6 @@ namespace RealTimeDefective.Models
         public string machine_no_process { get; set; }
         public string start_curing_date { get; set; }
         public string eng_code { get; set; }
+        public string process_user_id { get; set; }
     }
 }

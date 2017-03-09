@@ -26,7 +26,7 @@
     <Property Name="wc" Type="char" MaxLength="5" />
     <Property Name="machine_no" Type="char" MaxLength="3" />
     <Property Name="shift" Type="char" MaxLength="1" />
-    <Property Name="process" Type="char" MaxLength="20" />
+    <Property Name="process" Type="char" MaxLength="50" />
     <Property Name="mold" Type="char" MaxLength="30" />
     <Property Name="mold_set" Type="int" />
     <Property Name="item" Type="char" MaxLength="30" />
@@ -64,6 +64,7 @@
     <Property Name="machine_no_process" Type="char" MaxLength="3" />
     <Property Name="start_curing_date" Type="char" MaxLength="8" />
     <Property Name="eng_code" Type="char" MaxLength="30" />
+    <Property Name="process_user_id" Type="char" MaxLength="6" />
   </EntityType>
   <EntityType Name="tm_defective_cure_date">
     <Key>
@@ -153,6 +154,7 @@
   <EntityType Name="tm_defective_type">
     <Key>
       <PropertyRef Name="defective_id" />
+      <PropertyRef Name="location_cd" />
     </Key>
     <Property Name="entry_date" Type="char" MaxLength="8" />
     <Property Name="entry_time" Type="char" MaxLength="6" />
@@ -163,6 +165,8 @@
     <Property Name="defective_id" Type="int" Nullable="false" />
     <Property Name="defective_name" Type="char" MaxLength="40" />
     <Property Name="stat" Type="char" MaxLength="1" />
+    <Property Name="location_cd" Type="char" Nullable="false" MaxLength="3" />
+    <Property Name="count_sign" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="tm_defective_wc">
     <Key>

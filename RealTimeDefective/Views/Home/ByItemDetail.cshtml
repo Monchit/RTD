@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "By Item";
+    ViewBag.Title = "By Item Detail";
 }
 
 @section scripts {
@@ -12,8 +12,8 @@
                 obj.dtFrom = $("#dtFrom").val();
                 obj.dtTo = $("#dtTo").val();
                 obj.fg = $("#selFg").val();
-                //obj.item = $("selItem").val();
-                $.get("@Url.Action("_GetGraphByItem", "Home")", obj, function (data) {
+                obj.item = $("selItem").val();
+                $.get("@Url.Action("_GetGraphByItemDetail", "Home")", obj, function (data) {
                     $("#displayGraph").html(data);
                 });
                 return false; // Will stop the submission of the form
@@ -43,38 +43,27 @@
             }
         });
 
-        @*$("#selFg").change(function () {
+        $("#selFg").change(function () {
             $("#selItem").empty();
             if ($(this).val() != "") {
                 $.ajax({
                     type: 'POST',
                     url: '@Url.Action("GetItemByFG")',
-                        dataType: 'json',
-                        data: { fg: $(this).val() },
-                        success: function (datas) {
-                            $("#selItem").append('<option value="">--</option>');
-                            $.each(datas, function (i, data) {
-                                $("#selItem").append('<option value="' + data + '">' + data + '</option>');
-                            });
-                        },
-                        error: function (ex) {
-                            alert('Failed to retrieve item.' + ex);
-                        }
-                    });
-                }
+                    dataType: 'json',
+                    data: { fg: $(this).val() },
+                    success: function (datas) {
+                        $("#selItem").append('<option value="">--</option>');
+                        $.each(datas, function (i, data) {
+                            $("#selItem").append('<option value="' + data + '">' + data + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve item.' + ex);
+                    }
+                });
+            }
             return false;
-        });*@
-
-        @*$('#btSearch').click(function (e) {
-            e.preventDefault();
-            var obj = new Object();
-            obj.dtFrom = $("#dtFrom").val();
-            obj.dtTo = $("#dtTo").val();
-            obj.fg = $("#selFg").val();
-            $.get("@Url.Action("_GetGraphByItem", "Home")", obj, function (data) {
-                $("#displayGraph").html(data);
-            });
-        });*@
+        });
     });
 </script>
 }
@@ -90,9 +79,9 @@
             <option>@item</option>
         }
     </select>
-    @*<label> Item : </label>
+    <label> Item : </label>
     <select id="selItem" name="selItem" class="input-medium">
-    </select>*@
+    </select>
     <label> Start Date : </label>
     <input type="text" id="dtFrom" name="dtFrom" class="input-medium" readonly="true"
                         data-validation="date" data-validation-format="dd/mm/yyyy" />

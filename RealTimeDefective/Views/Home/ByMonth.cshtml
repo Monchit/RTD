@@ -3,8 +3,8 @@
 }
 <style>
     .ui-datepicker-calendar {
-    display: none;
- }
+        display: none;
+    }
 </style>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -29,16 +29,16 @@
             numberOfMonths: 1,
             maxDate: "0",
             showButtonPanel: true,
-            onClose: function(dateText, inst) {
-                function isDonePressed(){
+            onClose: function (dateText, inst) {
+                function isDonePressed() {
                     return ($('#ui-datepicker-div').html()
                         .indexOf('ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover') > -1);
                 }
 
-                if (isDonePressed()){
+                if (isDonePressed()) {
                     var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                     var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-                    $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');     
+                    $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');
                     $('.date-picker').focusout()//Added to remove focus from datepicker input box on selecting date
                 }
             }
@@ -89,9 +89,9 @@
             <option>@item</option>
         }
     </select>
-    <label> Start Month : </label>
+    <label>Start Month : </label>
     <input type="text" id="dtFrom" name="dtFrom" class="input-small date-picker" data-validation="required" />
-    <label> End Month : </label>
+    <label>End Month : </label>
     <input type="text" id="dtTo" name="dtTo" class="input-small date-picker" data-validation="required" />
     <button type="submit" id="btSearch" name="btSearch" class="btn btn-primary">Search</button>
     <button type="reset" id="btClear" name="btClear" class="btn btn-danger">Clear</button>

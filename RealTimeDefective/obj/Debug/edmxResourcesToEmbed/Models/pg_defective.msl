@@ -86,6 +86,8 @@
     <EntitySetMapping Name="tm_defective_type">
       <EntityTypeMapping TypeName="defectiveliveModel.tm_defective_type">
         <MappingFragment StoreEntitySet="tm_defective_type">
+          <ScalarProperty Name="count_sign" ColumnName="count_sign" />
+          <ScalarProperty Name="location_cd" ColumnName="location_cd" />
           <ScalarProperty Name="entry_date" ColumnName="entry_date" />
           <ScalarProperty Name="entry_time" ColumnName="entry_time" />
           <ScalarProperty Name="update_date" ColumnName="update_date" />
@@ -117,6 +119,7 @@
     <EntitySetMapping Name="td_defective_data">
       <EntityTypeMapping TypeName="defectiveliveModel.td_defective_data">
         <MappingFragment StoreEntitySet="td_defective_data">
+          <ScalarProperty Name="process_user_id" ColumnName="process_user_id" />
           <ScalarProperty Name="eng_code" ColumnName="eng_code" />
           <ScalarProperty Name="start_curing_date" ColumnName="start_curing_date" />
           <ScalarProperty Name="machine_no_process" ColumnName="machine_no_process" />

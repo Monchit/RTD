@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "By Daily";
+}
+<style>
+    .ui-datepicker-calendar {
+        display: none;
+    }
+</style>
+@section scripts {
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.validate({
+            form: '#form_search',
+            onSuccess: function ($form) {
+                var obj = new Object();
+                obj.fg = $("#selFg").val();
+                obj.yymm = $("#selMonth").val();
+                $.get("@Url.Action("_GetGraphByDaily", "Home")", obj, function (data) {
+                    $("#loading").hide();
+                    $("#displayGraph").html(data);
+                }).fail(function () {
+                    $("#loading").hide();
+                    alert("ERROR");
+                });
+                return false; // Will stop the submission of the form
+            }
+        });
+
+        $("#selMonth").datepicker({
+            dateFormat: 'yy/mm',
+            changeMonth: true,
+            changeYear: true,
+            numberOfMonths: 1,
+            maxDate: "0",
+            showButtonPanel: true,
+            onClose: function (dateText, inst) {
+                function isDonePressed() {
+                    return ($('#ui-datepicker-div').html()
+                        .indexOf('ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all ui-state-hover') > -1);
+                }
+
+                if (isDonePressed()) {
+                    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                    $(this).datepicker('setDate', new Date(year, month, 1)).trigger('change');
+                    $('.date-picker').focusout()//Added to remove focus from datepicker input box on selecting date
+                }
+            }
+        });
+
+        $("#btSearch").click(function () {
+            $("#loading").show();
+        });
+    });
+</script>
+}
+
+<h2>@ViewBag.Title</h2>
+<form id="form_search" name="form_search" class="form-inline">
+    <label>FG : </label>
+    <select id="selFg" name="selFg" class="input-small" data-validation="required">
+        <option value="">--</option>
+    @foreach (var item in ViewBag.SelectFG)
+    {
+        <option>@item</option>
+    }
+    </select>
+    <label> Select Year-Month : </label>
+    <input type="text" id="selMonth" name="selMonth" class="input-small" data-validation="required" />
+    <button type="submit" id="btSearch" name="btSearch" class="btn btn-primary"><i class="icon-search icon-white"></i> Search</button>
+    <button type="reset" id="btClear" name="btClear" class="btn btn-danger"><i class="icon-remove icon-white"></i> Clear</button>
+    <span id="loading" style="display:none;"><img src="~/Images/loading24x24.gif" alt="" /></span>
+</form>
+<div id="displayGraph"></div>

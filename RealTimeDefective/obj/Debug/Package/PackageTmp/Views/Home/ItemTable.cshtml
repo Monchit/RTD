@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "By Item";
+    ViewBag.Title = "Table by Item";
 }
 
 @section scripts {
@@ -13,8 +13,8 @@
                 obj.dtTo = $("#dtTo").val();
                 obj.fg = $("#selFg").val();
                 //obj.item = $("selItem").val();
-                $.get("@Url.Action("_GetGraphByItem", "Home")", obj, function (data) {
-                    $("#displayGraph").html(data);
+                $.get("@Url.Action("_GetTableByItem", "Home")", obj, function (data) {
+                    $("#displayTable").html(data);
                 });
                 return false; // Will stop the submission of the form
             }
@@ -65,16 +65,6 @@
             return false;
         });*@
 
-        @*$('#btSearch').click(function (e) {
-            e.preventDefault();
-            var obj = new Object();
-            obj.dtFrom = $("#dtFrom").val();
-            obj.dtTo = $("#dtTo").val();
-            obj.fg = $("#selFg").val();
-            $.get("@Url.Action("_GetGraphByItem", "Home")", obj, function (data) {
-                $("#displayGraph").html(data);
-            });
-        });*@
     });
 </script>
 }
@@ -90,9 +80,6 @@
             <option>@item</option>
         }
     </select>
-    @*<label> Item : </label>
-    <select id="selItem" name="selItem" class="input-medium">
-    </select>*@
     <label> Start Date : </label>
     <input type="text" id="dtFrom" name="dtFrom" class="input-medium" readonly="true"
                         data-validation="date" data-validation-format="dd/mm/yyyy" />

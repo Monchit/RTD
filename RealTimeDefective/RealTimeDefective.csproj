@@ -349,7 +349,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\loader24x24.gif" />
     <Content Include="Images\loading-animation.gif" />
+    <Content Include="Images\loading24x24.gif" />
     <Content Include="img\glyphicons-halflings-white.png" />
     <Content Include="img\glyphicons-halflings.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -545,10 +547,16 @@
     <Content Include="Views\Home\_GetGraphPercentDef.cshtml" />
     <Content Include="Views\Home\ItemDef.cshtml" />
     <Content Include="Views\Home\_GetGraphItemDef.cshtml" />
-    <Content Include="Views\Home\DefTypeToItem.cshtml" />
     <Content Include="Views\Home\DefModeTo3D.cshtml" />
-    <Content Include="Views\Home\ItemTo3D.cshtml" />
     <Content Include="Views\Home\_TableDefMode.cshtml" />
+    <Content Include="Views\Home\ItemTable.cshtml" />
+    <Content Include="Views\Home\DateTable.cshtml" />
+    <Content Include="Views\Home\ByItemDetail.cshtml" />
+    <Content Include="Views\Home\_GetGraphByItemDetail.cshtml" />
+    <Content Include="Views\Home\ByDaily.cshtml" />
+    <Content Include="Views\Home\BI.cshtml" />
+    <Content Include="Views\Home\_GetGraphByDaily.cshtml" />
+    <Content Include="Views\Home\BI1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,5 +23,7 @@ namespace RealTimeDefective.Models
         public int defective_id { get; set; }
         public string defective_name { get; set; }
         public string stat { get; set; }
+        public string location_cd { get; set; }
+        public int count_sign { get; set; }
     }
 }
